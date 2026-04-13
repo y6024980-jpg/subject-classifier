@@ -28,7 +28,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ========== API配置 ==========
-API_KEY = "sk-azwbstdwfdwlyisldlfbdmymszjcdkfhoojksozzugcarzec"
+# 从 Streamlit Secrets 读取 API 密钥（部署到云端时使用）
+# 本地运行时可通过环境变量或 .streamlit/secrets.toml 设置
+try:
+    API_KEY = st.secrets["API_KEY"]
+except:
+    # 本地开发 fallback
+    API_KEY = "sk-azwbstdwfdwlyisldlfbdmymszjcdkfhoojksozzugcarzec"
 
 # 单个模型配置
 MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
